@@ -11,3 +11,5 @@
 ![image](https://github.com/0x4096/wechat-relationship/blob/master/images/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A0%81.jpg)
 
 特别说明:核心算法来自https://github.com/mumuy/relationship
+
+test
