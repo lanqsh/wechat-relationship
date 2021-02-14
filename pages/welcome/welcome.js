@@ -79,6 +79,7 @@ Page({
     //获取屏幕结果内容
     var dataResult = this.data.result.toString();
     //获取点击的id
+    
     var id = event.target.id;
     if (id == this.data.id3) { //如果是X 后退则清除两个字符
       
@@ -89,6 +90,7 @@ Page({
           var data = data.substring(0, data.length - 3);
           //需要重新计算关系
           var result = relationship({ text: data, sex: this.data.sex, reverse: false, type: 'default' });
+          console.log(result)
           dataResult = result;
         }
 
@@ -99,9 +101,9 @@ Page({
         dataResult = "";
     }else{ //点击其他操作
       var data = data.substring(0, data.length);
-     // console.log(data);
       var result = relationship({ text: data, sex: this.data.sex, reverse: false, type: 'default' });
       console.log(result);
+
 
       if (id == this.data.id14){//点击 = 处理
         //如果字数大于22个则不要增加and提示关系态复杂啦
@@ -123,12 +125,16 @@ Page({
         //this.data.isTrue
         if (this.data.isTrue){ //一开始为false
           result = relationship({ text: data, sex: this.data.sex, reverse: false, type: 'default' });
+          console.log(result)
+
           //设置数据
           this.setData({
             isTrue: false
           })
         }else{
           result = relationship({ text: data, sex: this.data.sex, reverse: true, type: 'default' });
+          console.log(result)
+
           //设置数据
           this.setData({
             isTrue: true
@@ -155,10 +161,12 @@ Page({
             data = data + "的" + id;
             //需要重新计算关系
             result = relationship({ text: data, sex: this.data.sex, reverse: false, type: 'default' });
+            console.log(result)
+
             if( this.isNull(result) ){ //结果为空
                 result = "哎呀，关系太复杂了啊，我算不出来";
             }
-           
+
             dataResult = result;
           }
 

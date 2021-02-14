@@ -5,7 +5,7 @@ var app = getApp()
 Page({
   data: {
     motto: '新年快乐!',
-    welcome:'开始体验',
+    welcome:'GO',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),

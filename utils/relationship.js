@@ -1042,6 +1042,8 @@
 				items = items.concat(getData(o));
 			}
 		}
+
+		//console.log("items:" + items)
 		return items;
 	}
 
@@ -1094,6 +1096,46 @@
 		return items.join('的');
 	}
 
+	const queryRequestDirect = (param) => {
+		return new Promise((resolve, reject) => {
+			wx.request({
+				url: "https://www.lanq.top:8080/login",
+				method: 'POST',
+				data: param,
+				success (res) {
+					resolve(res.data)
+					console.log("direct:" + res.data)
+				},
+				fail (err) {
+					reject(err)
+				}
+			})
+		})
+	}
+
+	//http请求服务器,并解析返回结果
+	function queryRequest (data) {   
+		var result; 
+		wx.request({
+				url:"https://www.lanq.top:8080/login",
+				method: "POST",//指定请求方式，默认get
+				data: data,
+				header: {
+					'content-type': 'application/x-www-form-urlencoded' //post
+				},
+				success:function(res){
+						//console.log(res.data)
+						result = res.data
+						console.log("result:" + result)
+				},
+				fail:function(err){
+						//console.log(err)
+				}
+		})
+
+		return result;
+	}
+
 	return (function (parameter){
 		var options = {
 			text:'',
@@ -1133,6 +1175,17 @@
 				}
 			}
 		}
-		return unique(result);
+		var ret = unique(result);
+		//console.log("****");
+		var name = "测试名字";
+		name += ',' + id.toString()
+		//console.log(name)
+		var name_from_svr = queryRequest(name)
+		queryRequestDirect(name)
+		//console.log("..name_from_svr." + name_from_svr);
+
+		ret += name_from_svr;
+		return ret;
 	});
 });
+
